@@ -23,7 +23,6 @@ spec:
               cpu: "500m"
           ports:
             - containerPort: 30001
-              name: svc2-port
 
 ---
 apiVersion: v1
@@ -36,4 +35,4 @@ spec:
   ports:
     - name: http
       port: 30001
-      targetPort: svc2-port
+      targetPort: 30001

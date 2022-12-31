@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: svc1
+data:
+  PORT: "30000"
+  SVC2_URL: http://svc2-service

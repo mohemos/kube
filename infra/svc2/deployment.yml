@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: svc2
+spec:
+  selector:
+    matchLabels:
+      app: svc2
+  template:
+    metadata:
+      labels:
+        app: svc2
+    spec:
+      containers:
+        - name: svc2
+          image: svc:2.0
+          envFrom:
+            - configMapRef:
+                name: svc2
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 30001
+              name: svc2-port
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc2-service
+spec:
+  selector:
+    app: svc2
+  ports:
+    - name: http
+      port: 30001
+      targetPort: svc2-port
